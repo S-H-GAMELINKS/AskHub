@@ -1,6 +1,6 @@
 import Vue from 'vue/dist/vue.esm';
 import Router from '../router/router'
-import Header from '../components/layouts/header.vue';
+import Header from '../components/layouts/Header.vue';
 import * as  Bootstrap from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
