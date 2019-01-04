@@ -3,7 +3,6 @@
 #include <nlohmann/json.hpp>
 #include "logger.h"
 #include <string>
-#include <vector>
 #include <experimental/array>
 
 using namespace luna;
@@ -34,37 +33,10 @@ int main()
         }
     }
 
-    std::vector<std::string> container;
-
     // create a server
     server server;
     // add endpoints
 
-    // API example, served from /api
-    auto api = server.create_router("/api");
-    api->handle_request(request_method::GET, "/endpoint",
-                       [&](auto request) -> response
-                       {
-                            nlohmann::json retval;
-                            for(decltype(container)::iterator itr; itr != std::end(container); itr++)
-                                retval[std::distance(std::begin(container), itr)] = *itr;
-                            
-                           return retval.dump();
-                       });
-
-    auto post = server.create_router("/api/");
-    post->handle_request(request_method::POST, "/post",
-                        [&](auto request) -> response
-                        {
-
-                            nlohmann::json retval;
-
-                            container.emplace_back(std::move(request.params.at("text")));
-
-                            retval[std::to_string(container.size())] = request.params.at("text");
-
-                            return retval.dump();
-                        });
 
     // File serving example; serve files from the assets folder on /
     // index pages
