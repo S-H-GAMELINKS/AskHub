@@ -1,7 +1,7 @@
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-    entry: './index.js',
+    entry: './src/index.js',
     output: {
       filename: 'index.js',    
       path: `${__dirname}/webpack/`
