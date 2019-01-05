@@ -56,11 +56,11 @@ int main()
                         });
 
     for(auto&& j : javascripts) 
-        router->handle_request(request_method::GET, "/index.js",[] (auto req) -> response {
+        router->handle_request(request_method::GET, j,[] (auto req) -> response {
                 response res = response::from_file("./assets/index.js");
                 res.content_type = "text/javascript";
                 return res;
-        });
+            });
 
     server.start(port);
 
