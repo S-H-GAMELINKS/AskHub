@@ -11,7 +11,7 @@
         <button type="button" class="btn btn-primary" v-on:click="createTalk">Submit</button>
     </p>
     <p v-for="(talk, key, index) in talks" :key="index">
-        <vue-simple-markdown :source="talk.content"></vue-simple-markdown>
+        <vue-simple-markdown :source="talk.content" v-highlight></vue-simple-markdown>
     </p>
 </div>
 </template>
