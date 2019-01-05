@@ -11,12 +11,13 @@
         <button type="button" class="btn btn-primary" v-on:click="createTalk">Submit</button>
     </p>
     <p v-for="(talk, key, index) in talks" :key="index">
-        {{talk.content}}
+        <vue-simple-markdown :source="talk.content"></vue-simple-markdown>
     </p>
 </div>
 </template>
 
 <script>
+import { VueSimpleMarkdown } from 'vue-simple-markdown';
 import axios from 'axios';
 import store from '../../store/store';
 
@@ -28,6 +29,9 @@ export default {
             content: "",
             database: this.$store.state.database
         }
+    },
+    components: {
+        'vue-simple-markdown': VueSimpleMarkdown
     },
     mounted: function() {
         this.getTalks();
