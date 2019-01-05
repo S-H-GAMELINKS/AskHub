@@ -34,7 +34,7 @@ export default {
     },
     methods: {
         getTalks: function() {
-            const data = this.database.ref('askhub' + String(this.$route.path).replace(/\/chatrooms/, ''));
+            const data = this.database.ref('askhub' + String(this.$route.path).replace(/\/chats/, ''));
 
             data.on("value", (snapshot) => {
                 const askhub = Object.entries(snapshot.val());
@@ -54,7 +54,7 @@ export default {
         createTalk: function() {
             this.talks.length = 0;
 
-            this.database.ref('askhub' + String(this.$route.path).replace(/\/chatrooms/, '')).push({
+            this.database.ref('askhub' + String(this.$route.path).replace(/\/chats/, '')).push({
                 content: this.content,
             });
             this.content = "";
