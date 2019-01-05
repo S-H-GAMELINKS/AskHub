@@ -43,7 +43,9 @@ int main()
 
     auto router = server.create_router("/");
 
-    auto routers = std::experimental::make_array("/", "/about", "/contact");
+    auto routers = std::experimental::make_array("/", "/about", "/contact", "/chats", "/chats/-([0-9a-zA-Z]{19})");
+
+    auto javascripts = std::experimental::make_array("/index.js", "/chats/index.js");
 
     for(auto&& r : routers)
         router->handle_request(request_method::GET, 
@@ -53,11 +55,12 @@ int main()
                             return res;
                         });
 
-    router->handle_request(request_method::GET, "/index.js",[] (auto req) -> response {
-            response res = response::from_file("./assets/index.js");
-            res.content_type = "text/javascript";
-            return res;
-    });
+    for(auto&& j : javascripts) 
+        router->handle_request(request_method::GET, "/index.js",[] (auto req) -> response {
+                response res = response::from_file("./assets/index.js");
+                res.content_type = "text/javascript";
+                return res;
+        });
 
     server.start(port);
 
